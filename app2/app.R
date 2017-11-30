@@ -133,6 +133,17 @@ server <- function(input, output){
   coastline <- read.shapefile("/srv/shiny-server/app2/ne_10m_coastline")
   coastline2 <- read.shapefile("/srv/shiny-server/app2/eez_lr")
   
+  #Create map data  
+  colnames(mapData)<- c("Year","Rect","Species","QtyT","ValGBP")        
+  # Map    
+  mapData <- as.data.table(mapData)    
+  mapData <- mapData[!(mapData$Rect =="UNK"),]    
+  mapData <- mapData[!(mapData$Rect =="00Z5"),]    
+  mapData <- mapData[!(mapData$Rect =="00Z6"),]    
+  mapData[, Latitude := ir2d(mapData[,Rect])[1]]    
+  mapData[, Longitude := ir2d(mapData[,Rect])[2]]    
+  mapData<- mapData[order(Year),] 
+  
 
   # Map data for download
   data <- reactive({mapData[mapData$Species %in% c(input$MapSpecies)
