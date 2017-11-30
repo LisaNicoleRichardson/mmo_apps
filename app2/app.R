@@ -1,5 +1,6 @@
 #Shiny app (basic)
 #Load required libraries
+
 library(shiny)
 library(shinydashboard)
 library(graphics)
