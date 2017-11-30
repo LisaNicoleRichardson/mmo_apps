@@ -127,11 +127,11 @@ server <- function(input, output){
     
   }
   #FOR MAPS - refer to 'Create aggregate data.R' for mapData creation
-  mapData <- read.csv("~/Scripts/mapData_2012_2016.csv", header=TRUE, sep=",")
+  mapData <- read.csv("/srv/shiny-server/app2/mapData_2012_2016.csv", header=TRUE, sep=",")
   mapData <- as.data.table(mapData)
   #Shapefiles and ranges
-  coastline <- read.shapefile("/srv/shiny-server/app1/ne_10m_coastline")
-  coastline2 <- read.shapefile("/srv/shiny-server/app1/eez_lr")
+  coastline <- read.shapefile("/srv/shiny-server/app2/ne_10m_coastline")
+  coastline2 <- read.shapefile("/srv/shiny-server/app2/eez_lr")
   
 
   # Map data for download
